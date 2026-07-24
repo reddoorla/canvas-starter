@@ -26,16 +26,16 @@ t4              plus5           grid6           grid9
 
 ## 2. Approved decisions
 
-| Decision | Choice |
-|---|---|
+| Decision         | Choice                                                                                                                                                |
+| ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Navigation model | **Directional snap** — wheel/trackpad, arrow keys (+ WASD), and swipe each move exactly one cell in a direction. Only filled neighbors are reachable. |
-| Transition | **Smooth glide** — the entire canvas translates so you watch the current slide leave and the next arrive. |
-| Layouts | **Flexible engine** — one grid config drives all four presets. |
-| Content | **Hardcoded placeholders** — big number + background color per slide. Swappable for real content later. |
-| Edges | **Hard edges, no wrap-around.** A move toward an empty/out-of-bounds cell is a no-op. |
-| Discoverability | Keep **both** extras: faint on-screen directional arrows (lit only toward reachable neighbors) + a tiny minimap dot indicator. |
-| Repo | Public, `reddoorla/canvas-starter`, deployed to Netlify. |
-| Scaffold | **Copy `reddoor-starter`; keep Prismic as an inert stub** (revivable when templatized); mount canvas at `/`. |
+| Transition       | **Smooth glide** — the entire canvas translates so you watch the current slide leave and the next arrive.                                             |
+| Layouts          | **Flexible engine** — one grid config drives all four presets.                                                                                        |
+| Content          | **Hardcoded placeholders** — big number + background color per slide. Swappable for real content later.                                               |
+| Edges            | **Hard edges, no wrap-around.** A move toward an empty/out-of-bounds cell is a no-op.                                                                 |
+| Discoverability  | Keep **both** extras: faint on-screen directional arrows (lit only toward reachable neighbors) + a tiny minimap dot indicator.                        |
+| Repo             | Public, `reddoorla/canvas-starter`, deployed to Netlify.                                                                                              |
+| Scaffold         | **Copy `reddoor-starter`; keep Prismic as an inert stub** (revivable when templatized); mount canvas at `/`.                                          |
 
 ## 3. Technical approach — "one big translated board"
 
@@ -77,6 +77,7 @@ The exact list of files to guard/short-circuit is an implementation-plan detail;
 Everything lives under `src/lib/components/canvas/` with the route at `src/routes/+page.svelte`.
 
 ### `nav.js` (pure logic — the testable heart)
+
 - `parseLayout(preset)` → `{ rows, cols, filled: Set<"r,c">, slides: [{ r, c, label, color }] }`
 - `nextCell(current, direction, filled)` → target `{ row, col }` or `null`
   - `direction ∈ { 'up','down','left','right' }`
@@ -87,6 +88,7 @@ Everything lives under `src/lib/components/canvas/` with the route at `src/route
 - No DOM, no Svelte — pure functions, exhaustively unit-tested.
 
 ### `Canvas.svelte` (engine)
+
 - **Props:** `layout` (one of the four presets).
 - **State (runes):** `current = $state({ row, col })`, `isAnimating = $state(false)`.
 - Renders the translated board of `Slide` components; computes the transform from `current`.
@@ -95,19 +97,23 @@ Everything lives under `src/lib/components/canvas/` with the route at `src/route
 - Renders `NavArrows` and `Minimap`, passing the set of currently-reachable directions and position.
 
 ### `Slide.svelte`
+
 - One cell. **Props:** `slide` (`{ label, color }`), plus grid position.
 - Renders placeholder content (large label + background color) via a `children` snippet so real content
   can be dropped in later without touching the engine.
 
 ### `NavArrows.svelte`
+
 - Fixed-position up/down/left/right affordances. **Props:** `reachable` (which directions have a filled
   neighbor). Dims/hides arrows with no target. Clicking an arrow triggers a move.
 
 ### `Minimap.svelte`
+
 - Tiny grid of dots reflecting the layout; the current cell is highlighted. Empty cells shown faded or
   omitted. Read-only indicator.
 
 ### `LayoutSwitcher.svelte`
+
 - Small fixed-corner control to switch between `t4 / plus5 / grid6 / grid9` live (the point of a test
   site — comparing layouts). Resets `current` to that layout's entry cell on switch.
 

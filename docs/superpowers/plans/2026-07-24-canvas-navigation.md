@@ -39,12 +39,14 @@ Modified:
 ## Task 1: Scaffold canvas-starter from reddoor-starter (green baseline)
 
 **Files:**
+
 - Copy tree from `~/Documents/GitHub/reddoor-starter` into `~/Documents/GitHub/canvas-starter`
 - Modify: `package.json` (name field)
 
 - [ ] **Step 1: Copy the starter tree (excluding git/build/deps), preserving our docs/**
 
 Run:
+
 ```bash
 cd ~/Documents/GitHub/canvas-starter
 rsync -a \
@@ -52,11 +54,13 @@ rsync -a \
   --exclude='build' --exclude='.netlify' \
   ~/Documents/GitHub/reddoor-starter/ ./
 ```
+
 Expected: files appear (src/, package.json, svelte.config.js, netlify.toml, etc.); existing `docs/` is untouched.
 
 - [ ] **Step 2: Rename the package**
 
 Edit `package.json`, change the `"name"` field:
+
 ```json
 "name": "canvas-starter",
 ```
@@ -88,6 +92,7 @@ Co-Authored-By: Claude Opus 4.8 (1M context) <noreply@anthropic.com>"
 ## Task 2: Layout presets + pure navigation logic (TDD)
 
 **Files:**
+
 - Create: `src/lib/canvas/presets.ts`
 - Create: `src/lib/canvas/nav.ts`
 - Test: `src/lib/canvas/nav.test.ts`
@@ -95,6 +100,7 @@ Co-Authored-By: Claude Opus 4.8 (1M context) <noreply@anthropic.com>"
 - [ ] **Step 1: Write the presets module**
 
 Create `src/lib/canvas/presets.ts`:
+
 ```ts
 import type { Layout } from "./nav";
 
@@ -103,15 +109,26 @@ export type PresetName = "t4" | "plus5" | "grid6" | "grid9";
 // cells are row-major, 1 = a slide, 0 = an empty cell.
 export const PRESETS: Record<PresetName, Layout> = {
   t4: { name: "t4", rows: 2, cols: 3, cells: [1, 1, 1, 0, 1, 0] },
-  plus5: { name: "plus5", rows: 3, cols: 3, cells: [0, 1, 0, 1, 1, 1, 0, 1, 0] },
+  plus5: {
+    name: "plus5",
+    rows: 3,
+    cols: 3,
+    cells: [0, 1, 0, 1, 1, 1, 0, 1, 0],
+  },
   grid6: { name: "grid6", rows: 2, cols: 3, cells: [1, 1, 1, 1, 1, 1] },
-  grid9: { name: "grid9", rows: 3, cols: 3, cells: [1, 1, 1, 1, 1, 1, 1, 1, 1] },
+  grid9: {
+    name: "grid9",
+    rows: 3,
+    cols: 3,
+    cells: [1, 1, 1, 1, 1, 1, 1, 1, 1],
+  },
 };
 ```
 
 - [ ] **Step 2: Write the failing tests for nav.ts**
 
 Create `src/lib/canvas/nav.test.ts`:
+
 ```ts
 import { describe, it, expect } from "vitest";
 import {
@@ -160,8 +177,14 @@ describe("parseLayout", () => {
 
 describe("nextCell", () => {
   it("moves to a filled neighbor", () => {
-    expect(nextCell({ row: 1, col: 1 }, "down", plus5)).toEqual({ row: 2, col: 1 });
-    expect(nextCell({ row: 1, col: 1 }, "left", plus5)).toEqual({ row: 1, col: 0 });
+    expect(nextCell({ row: 1, col: 1 }, "down", plus5)).toEqual({
+      row: 2,
+      col: 1,
+    });
+    expect(nextCell({ row: 1, col: 1 }, "left", plus5)).toEqual({
+      row: 1,
+      col: 0,
+    });
   });
 
   it("returns null toward an empty neighbor", () => {
@@ -229,6 +252,7 @@ Expected: FAIL — `Cannot find module './nav'` (nav.ts not created yet).
 - [ ] **Step 4: Implement nav.ts**
 
 Create `src/lib/canvas/nav.ts`:
+
 ```ts
 export type Direction = "up" | "down" | "left" | "right";
 
@@ -282,7 +306,13 @@ export function parseLayout(layout: Layout): ParsedLayout {
     }
   }
 
-  return { name: layout.name, rows: layout.rows, cols: layout.cols, filled, slides };
+  return {
+    name: layout.name,
+    rows: layout.rows,
+    cols: layout.cols,
+    filled,
+    slides,
+  };
 }
 
 const DELTA: Record<Direction, Cell> = {
@@ -371,11 +401,13 @@ Co-Authored-By: Claude Opus 4.8 (1M context) <noreply@anthropic.com>"
 ## Task 3: Slide component
 
 **Files:**
+
 - Create: `src/lib/components/canvas/Slide.svelte`
 
 - [ ] **Step 1: Write Slide.svelte**
 
 Create `src/lib/components/canvas/Slide.svelte`:
+
 ```svelte
 <script lang="ts">
   import type { Snippet } from "svelte";
@@ -385,13 +417,18 @@ Create `src/lib/components/canvas/Slide.svelte`:
     slide,
     current = false,
     children,
-  }: { slide: Slide; current?: boolean; children?: Snippet<[Slide]> } = $props();
+  }: {
+    slide: Slide;
+    current?: boolean;
+    children?: Snippet<[Slide]>;
+  } = $props();
 </script>
 
 <section
   class="slide"
   class:is-current={current}
-  style="--slide-color: {slide.color}; grid-row: {slide.row + 1}; grid-column: {slide.col + 1};"
+  style="--slide-color: {slide.color}; grid-row: {slide.row +
+    1}; grid-column: {slide.col + 1};"
   aria-label={`Slide ${slide.label}`}
   aria-current={current ? "true" : undefined}
 >
@@ -440,6 +477,7 @@ Co-Authored-By: Claude Opus 4.8 (1M context) <noreply@anthropic.com>"
 ## Task 4: Canvas engine + component test
 
 **Files:**
+
 - Create: `src/lib/components/canvas/Canvas.svelte`
 - Test: `src/lib/components/canvas/Canvas.test.ts`
 
@@ -448,14 +486,19 @@ Co-Authored-By: Claude Opus 4.8 (1M context) <noreply@anthropic.com>"
 - [ ] **Step 1: Create temporary stubs for the two child components**
 
 Create `src/lib/components/canvas/NavArrows.svelte`:
+
 ```svelte
 <script lang="ts">
   import type { Direction } from "$lib/canvas/nav";
-  let { reachable, onmove }: { reachable: Set<Direction>; onmove: (d: Direction) => void } = $props();
+  let {
+    reachable,
+    onmove,
+  }: { reachable: Set<Direction>; onmove: (d: Direction) => void } = $props();
 </script>
 ```
 
 Create `src/lib/components/canvas/Minimap.svelte`:
+
 ```svelte
 <script lang="ts">
   import type { ParsedLayout, Cell } from "$lib/canvas/nav";
@@ -466,6 +509,7 @@ Create `src/lib/components/canvas/Minimap.svelte`:
 - [ ] **Step 2: Write Canvas.svelte**
 
 Create `src/lib/components/canvas/Canvas.svelte`:
+
 ```svelte
 <script lang="ts">
   import type { Cell, Direction, Layout } from "$lib/canvas/nav";
@@ -599,6 +643,7 @@ Create `src/lib/components/canvas/Canvas.svelte`:
 - [ ] **Step 3: Write the component test**
 
 Create `src/lib/components/canvas/Canvas.test.ts`:
+
 ```ts
 import { describe, it, expect, afterEach } from "vitest";
 import { render, cleanup, fireEvent } from "@testing-library/svelte";
@@ -672,12 +717,14 @@ Co-Authored-By: Claude Opus 4.8 (1M context) <noreply@anthropic.com>"
 ## Task 5: NavArrows + Minimap (discoverability)
 
 **Files:**
+
 - Modify: `src/lib/components/canvas/NavArrows.svelte` (replace the Task 4 stub)
 - Modify: `src/lib/components/canvas/Minimap.svelte` (replace the Task 4 stub)
 
 - [ ] **Step 1: Flesh out NavArrows.svelte**
 
 Replace the entire contents of `src/lib/components/canvas/NavArrows.svelte`:
+
 ```svelte
 <script lang="ts">
   import type { Direction } from "$lib/canvas/nav";
@@ -733,7 +780,10 @@ Replace the entire contents of `src/lib/components/canvas/NavArrows.svelte`:
     color: rgba(255, 255, 255, 0.35);
     font-size: 1.1rem;
     cursor: default;
-    transition: opacity 150ms ease, background 150ms ease, color 150ms ease;
+    transition:
+      opacity 150ms ease,
+      background 150ms ease,
+      color 150ms ease;
   }
   .arrow.active {
     background: rgba(255, 255, 255, 0.85);
@@ -741,16 +791,29 @@ Replace the entire contents of `src/lib/components/canvas/NavArrows.svelte`:
     cursor: pointer;
   }
   /* plus arrangement within the 3x2 grid */
-  .arrow.up { grid-column: 2; grid-row: 1; }
-  .arrow.left { grid-column: 1; grid-row: 2; }
-  .arrow.down { grid-column: 2; grid-row: 2; }
-  .arrow.right { grid-column: 3; grid-row: 2; }
+  .arrow.up {
+    grid-column: 2;
+    grid-row: 1;
+  }
+  .arrow.left {
+    grid-column: 1;
+    grid-row: 2;
+  }
+  .arrow.down {
+    grid-column: 2;
+    grid-row: 2;
+  }
+  .arrow.right {
+    grid-column: 3;
+    grid-row: 2;
+  }
 </style>
 ```
 
 - [ ] **Step 2: Flesh out Minimap.svelte**
 
 Replace the entire contents of `src/lib/components/canvas/Minimap.svelte`:
+
 ```svelte
 <script lang="ts">
   import type { ParsedLayout, Cell } from "$lib/canvas/nav";
@@ -828,6 +891,7 @@ Co-Authored-By: Claude Opus 4.8 (1M context) <noreply@anthropic.com>"
 ## Task 6: Layout switcher + mount the canvas at `/`
 
 **Files:**
+
 - Create: `src/lib/components/canvas/LayoutSwitcher.svelte`
 - Modify: `src/routes/[[preview=preview]]/+page.svelte`
 - Delete: `src/routes/[[preview=preview]]/+page.server.ts`
@@ -835,6 +899,7 @@ Co-Authored-By: Claude Opus 4.8 (1M context) <noreply@anthropic.com>"
 - [ ] **Step 1: Write LayoutSwitcher.svelte**
 
 Create `src/lib/components/canvas/LayoutSwitcher.svelte`:
+
 ```svelte
 <script lang="ts">
   import { PRESETS, type PresetName } from "$lib/canvas/presets";
@@ -889,14 +954,17 @@ Create `src/lib/components/canvas/LayoutSwitcher.svelte`:
 - [ ] **Step 2: Delete the Prismic homepage loader**
 
 Run:
+
 ```bash
 git rm src/routes/[[preview=preview]]/+page.server.ts
 ```
+
 Expected: file staged for deletion. (Prismic loading patterns remain in `src/routes/[[preview=preview]]/[uid]/+page.server.ts` and `$lib/prismicio.ts`.)
 
 - [ ] **Step 3: Replace the homepage with the canvas mount**
 
 Replace the entire contents of `src/routes/[[preview=preview]]/+page.svelte`:
+
 ```svelte
 <script lang="ts">
   import Canvas from "$lib/components/canvas/Canvas.svelte";
@@ -936,12 +1004,13 @@ Expected: PASS (nav + Canvas tests plus the copied starter tests).
 
 Run: `pnpm vite:dev` (then open the printed localhost URL).
 Verify by hand:
+
 - The plus5 layout shows a centered colored slide with a big "2".
 - Arrow keys / WASD glide to neighbors; only filled directions move (top arm: only Down works).
 - Trackpad two-finger swipe and (on a touch device) swipe navigate one cell per gesture.
 - The bottom arrow cluster lights only reachable directions; the top-right minimap dot tracks position.
 - The top-left switcher flips between t4 / plus5 / grid6 / grid9 and resets to that layout's entry cell.
-Stop the server (Ctrl-C) when satisfied.
+  Stop the server (Ctrl-C) when satisfied.
 
 - [ ] **Step 7: Commit**
 
@@ -960,6 +1029,7 @@ Co-Authored-By: Claude Opus 4.8 (1M context) <noreply@anthropic.com>"
 ## Task 7: Production build gate + README
 
 **Files:**
+
 - Create: `README.md`
 
 - [ ] **Step 1: Full production build with no Prismic repo**
@@ -976,7 +1046,8 @@ Expected: PASS. If formatting fails, run `pnpm format` then re-run `pnpm lint`.
 - [ ] **Step 3: Write README.md**
 
 Create `README.md`:
-```markdown
+
+````markdown
 # canvas-starter
 
 A test site exploring a 2D "navigating a canvas" interaction: full-viewport
@@ -1015,6 +1086,7 @@ pnpm vite:dev      # dev server
 pnpm test:unit     # nav logic + Canvas component tests
 pnpm build         # production build (no Prismic repo needed)
 ```
+````
 
 ## Architecture
 
@@ -1022,7 +1094,8 @@ pnpm build         # production build (no Prismic repo needed)
 - `src/lib/canvas/presets.ts` — the four layouts
 - `src/lib/components/canvas/` — Canvas engine, Slide, NavArrows, Minimap, LayoutSwitcher
 - Canvas mounts at `/` (`src/routes/[[preview=preview]]/+page.svelte`)
-```
+
+````
 
 - [ ] **Step 4: Commit**
 
@@ -1031,7 +1104,7 @@ git add README.md
 git commit -m "docs: project README
 
 Co-Authored-By: Claude Opus 4.8 (1M context) <noreply@anthropic.com>"
-```
+````
 
 ---
 
@@ -1044,6 +1117,7 @@ Co-Authored-By: Claude Opus 4.8 (1M context) <noreply@anthropic.com>"
 - [ ] **Step 1: Create the public repo under reddoorla and push**
 
 Run (from `~/Documents/GitHub/canvas-starter`):
+
 ```bash
 gh repo create reddoorla/canvas-starter \
   --public \
@@ -1052,6 +1126,7 @@ gh repo create reddoorla/canvas-starter \
   --description "2D directional-snap canvas navigation prototype (SvelteKit)" \
   --push
 ```
+
 Expected: repo created at https://github.com/reddoorla/canvas-starter and `main` pushed. Verify: `gh repo view reddoorla/canvas-starter --web`.
 
 - [ ] **Step 2: Deploy to Netlify**
@@ -1059,11 +1134,13 @@ Expected: repo created at https://github.com/reddoorla/canvas-starter and `main`
 The repo already has `netlify.toml` + `@sveltejs/adapter-netlify`, so no build config is needed. Two options:
 
 Option A — Netlify UI (simplest, no extra CLI/auth):
+
 1. Netlify → **Add new site → Import an existing project → GitHub → `reddoorla/canvas-starter`**.
 2. Accept the detected build command `pnpm build` and publish directory from `netlify.toml`.
 3. Deploy. Share the generated `*.netlify.app` URL.
 
 Option B — Netlify CLI (if installed and authed):
+
 ```bash
 netlify init      # link to a new site under the reddoorla team
 netlify deploy --build --prod
@@ -1078,6 +1155,7 @@ Open the Netlify URL and repeat the Task 6 Step 6 smoke checks in the deployed b
 ## Self-Review (completed by plan author)
 
 **Spec coverage:**
+
 - Directional snap (wheel/keys/touch), one move per gesture → Task 4 (`onWheel`/`onKeydown`/touch + `isAnimating` gate). ✓
 - Smooth glide + reduced-motion fallback → Task 4 (`.board` transition + `.no-motion`). ✓
 - Flexible 4-layout engine → Task 2 (`presets.ts`, `parseLayout`) + Task 6 (`LayoutSwitcher`). ✓

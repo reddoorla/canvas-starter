@@ -45,8 +45,14 @@ describe("parseLayout", () => {
 
 describe("nextCell", () => {
   it("moves to a filled neighbor", () => {
-    expect(nextCell({ row: 1, col: 1 }, "down", plus5)).toEqual({ row: 2, col: 1 });
-    expect(nextCell({ row: 1, col: 1 }, "left", plus5)).toEqual({ row: 1, col: 0 });
+    expect(nextCell({ row: 1, col: 1 }, "down", plus5)).toEqual({
+      row: 2,
+      col: 1,
+    });
+    expect(nextCell({ row: 1, col: 1 }, "left", plus5)).toEqual({
+      row: 1,
+      col: 0,
+    });
   });
 
   it("returns null toward an empty neighbor", () => {

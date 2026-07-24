@@ -52,7 +52,10 @@
     color: rgba(255, 255, 255, 0.35);
     font-size: 1.1rem;
     cursor: default;
-    transition: opacity 150ms ease, background 150ms ease, color 150ms ease;
+    transition:
+      opacity 150ms ease,
+      background 150ms ease,
+      color 150ms ease;
   }
   .arrow.active {
     background: rgba(255, 255, 255, 0.85);
@@ -60,8 +63,20 @@
     cursor: pointer;
   }
   /* plus arrangement within the 3x2 grid */
-  .arrow.up { grid-column: 2; grid-row: 1; }
-  .arrow.left { grid-column: 1; grid-row: 2; }
-  .arrow.down { grid-column: 2; grid-row: 2; }
-  .arrow.right { grid-column: 3; grid-row: 2; }
+  .arrow.up {
+    grid-column: 2;
+    grid-row: 1;
+  }
+  .arrow.left {
+    grid-column: 1;
+    grid-row: 2;
+  }
+  .arrow.down {
+    grid-column: 2;
+    grid-row: 2;
+  }
+  .arrow.right {
+    grid-column: 3;
+    grid-row: 2;
+  }
 </style>

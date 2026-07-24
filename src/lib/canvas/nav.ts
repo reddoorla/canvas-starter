@@ -50,7 +50,13 @@ export function parseLayout(layout: Layout): ParsedLayout {
     }
   }
 
-  return { name: layout.name, rows: layout.rows, cols: layout.cols, filled, slides };
+  return {
+    name: layout.name,
+    rows: layout.rows,
+    cols: layout.cols,
+    filled,
+    slides,
+  };
 }
 
 const DELTA: Record<Direction, Cell> = {
