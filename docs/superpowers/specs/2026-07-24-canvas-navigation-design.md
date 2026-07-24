@@ -1,8 +1,10 @@
 # Canvas Navigation — Design Spec
 
 **Date:** 2026-07-24
-**Status:** Approved (design), pending implementation plan
-**Repo:** `reddoorla/canvas-nav` (to be created) — Netlify-deployed for sharing
+**Status:** Approved — proceeding to implementation plan
+**Repo:** `reddoorla/canvas-starter` (**public**) — Netlify-deployed for sharing
+**Future intent:** if the prototype feels right, promote it to a **reusable template** (hence Prismic is
+kept as an inert stub rather than deleted).
 
 ## 1. Goal
 
@@ -32,6 +34,8 @@ t4              plus5           grid6           grid9
 | Content | **Hardcoded placeholders** — big number + background color per slide. Swappable for real content later. |
 | Edges | **Hard edges, no wrap-around.** A move toward an empty/out-of-bounds cell is a no-op. |
 | Discoverability | Keep **both** extras: faint on-screen directional arrows (lit only toward reachable neighbors) + a tiny minimap dot indicator. |
+| Repo | Public, `reddoorla/canvas-starter`, deployed to Netlify. |
+| Scaffold | **Copy `reddoor-starter`; keep Prismic as an inert stub** (revivable when templatized); mount canvas at `/`. |
 
 ## 3. Technical approach — "one big translated board"
 
@@ -46,7 +50,7 @@ crossfade engine (loses the spatial feel).
   you can only move to a filled neighbor.
 - At 4–9 slides, mounting all slides at once is a non-issue.
 
-## 4. Stack & base
+## 4. Stack & scaffold
 
 Built on the **reddoor-starter** stack (so Netlify deploy, Tailwind 4, Vitest, and swipe gestures come
 for free):
@@ -56,9 +60,17 @@ for free):
 - `svelte-gestures` (already a dependency) for touch/swipe
 - Vitest 4 for unit tests (co-located `*.test.ts`), Playwright for a smoke test
 
-**Prismic is not used.** The canvas mounts at `/` and the starter's Prismic-driven routes/content
-fetching are removed or bypassed so the site runs with no Prismic repo. (Exact strip-down is an
-implementation-plan detail.)
+**Scaffold = copy the starter, keep Prismic stubbed.** Copy the full `reddoor-starter` tree, then:
+
+- Mount the **canvas at `/`** (the new `src/routes/+page.svelte`), replacing the Prismic-driven homepage.
+- Leave the Prismic wiring in place but **inert**: `prismicio.ts`, `slicemachine`, `src/lib/slices/`, and
+  the Prismic-backed routes stay in the tree as a **stub** so the site builds and runs with **no Prismic
+  repo configured** (routes that would fetch Prismic are guarded/short-circuited, not deleted).
+- Goal: a green `pnpm build` and `pnpm dev` with zero Prismic credentials, while the Prismic scaffolding
+  remains ready to re-activate when this becomes a template.
+
+The exact list of files to guard/short-circuit is an implementation-plan detail; the principle is
+**stub, don't delete.**
 
 ## 5. Components & responsibilities
 
@@ -119,28 +131,28 @@ ignored (enforces exactly one cell per gesture).
 
 ## 8. Deployment
 
-- Local: `~/Documents/GitHub/canvas-nav`.
-- GitHub: create **`reddoorla/canvas-nav`** (visibility to confirm — see Open Questions), push `main`.
+- Local: `~/Documents/GitHub/canvas-starter`.
+- GitHub: create **public** `reddoorla/canvas-starter`, push `main`.
 - Netlify: connect the repo (adapter-netlify + `netlify.toml` already present) for a shareable URL.
 
 ## 9. Testing
 
 - **TDD `nav.js`** with Vitest: `nextCell` across all four presets — arms, corners, out-of-bounds,
-  empty-neighbor no-ops, and `parseLayout` correctness.
+  empty-neighbor no-ops, and `parseLayout` / `entryCell` correctness.
 - One Playwright **smoke test**: page loads, a keypress moves the board (transform changes), reduced-motion
   path doesn't error.
 - No heavy E2E — this is a prototype.
 
 ## 10. Out of scope (YAGNI)
 
-- Prismic / CMS content, real copy, imagery.
-- Deep-linking to a specific slide, browser-history per slide.
+- Active Prismic content wiring (kept only as an inert, revivable stub).
+- Real copy, imagery, per-slide deep-linking, or browser-history per slide.
 - Diagonal moves, gap-skipping across empty cells, wrap-around.
 - Zoom-out "whole canvas" overview mode (possible future add; not now).
 
-## 11. Open questions for implementation
+## 11. Resolved decisions (was: open questions)
 
-1. **GitHub repo visibility** — public or private? (Netlify can deploy either.)
-2. **Scaffold path** — fork/copy `reddoor-starter` and strip Prismic, vs. a minimal fresh SvelteKit app
-   matching the same stack. Leaning: copy the starter, gut Prismic, mount canvas at `/`.
-3. Repo name `canvas-nav` OK, or prefer something else?
+1. **Visibility** — **public.**
+2. **Scaffold path** — **copy `reddoor-starter`, keep Prismic as an inert stub**, canvas at `/`.
+3. **Repo name** — **`canvas-starter`.**
+4. **Future** — may be promoted to a reusable template if the prototype lands.
