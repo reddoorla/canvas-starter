@@ -22,6 +22,10 @@
 
   let { data, children } = $props();
 
+  // Pages can opt out of the global chrome (e.g. the full-screen canvas at /)
+  // by returning `fullscreen: true` from their load.
+  const fullscreen = $derived(!!page.data.fullscreen);
+
   // Kit's own post-nav scroll (top / hash anchor / popstate restore) runs
   // instantly instead of gliding under app.css's smooth-scroll. See the util.
   beforeNavigate(disableSmoothScroll);
@@ -45,13 +49,17 @@
   Skip to main content
 </a>
 <div class="flex flex-col min-h-screen">
-  <Nav items={siteConfig.nav.items} logo={siteConfig.nav.logo} />
+  {#if !fullscreen}
+    <Nav items={siteConfig.nav.items} logo={siteConfig.nav.logo} />
+  {/if}
 
   <main id="main-content" tabindex="-1" class="flex-1">
     {@render children?.()}
   </main>
 
-  <Footer socials={siteConfig.footer.socials} text={siteConfig.footer.text} />
+  {#if !fullscreen}
+    <Footer socials={siteConfig.footer.socials} text={siteConfig.footer.text} />
+  {/if}
 </div>
 <TransitionOverlay />
 <LandscapeModal />
