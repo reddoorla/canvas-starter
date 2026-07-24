@@ -6,14 +6,6 @@
   let active = $state<PresetName>("plus5");
 </script>
 
-<svelte:head>
-  <title>Canvas Navigation</title>
-  <meta
-    name="description"
-    content="A 2D directional-snap canvas navigation prototype."
-  />
-</svelte:head>
-
 <!-- Remount Canvas on preset change so position/animation state resets cleanly. -->
 {#key active}
   <Canvas layout={PRESETS[active]} />
