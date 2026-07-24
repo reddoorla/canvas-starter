@@ -1,16 +1,22 @@
 <script lang="ts">
-  import { SliceZone } from "@prismicio/svelte";
-  import { components } from "$lib/slices";
-  import { loadPresentation } from "$lib/blux/presentation";
+  import Canvas from "$lib/components/canvas/Canvas.svelte";
+  import LayoutSwitcher from "$lib/components/canvas/LayoutSwitcher.svelte";
+  import { PRESETS, type PresetName } from "$lib/canvas/presets";
 
-  let { data } = $props();
+  let active = $state<PresetName>("plus5");
 </script>
 
-<!-- Per-band Blux presentation (block styles, backgrounds, grid trees) from
-     the faithful-grid manifest. Empty until the site is converted with
-     `blux convert`; SliceZone hands it to every slice as `context`. -->
-<SliceZone
-  slices={data.page.data.slices}
-  {components}
-  context={{ presentation: loadPresentation() }}
-/>
+<svelte:head>
+  <title>Canvas Navigation</title>
+  <meta
+    name="description"
+    content="A 2D directional-snap canvas navigation prototype."
+  />
+</svelte:head>
+
+<!-- Remount Canvas on preset change so position/animation state resets cleanly. -->
+{#key active}
+  <Canvas layout={PRESETS[active]} />
+{/key}
+
+<LayoutSwitcher {active} onselect={(name) => (active = name)} />
