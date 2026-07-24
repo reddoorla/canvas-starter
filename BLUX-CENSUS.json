@@ -1,0 +1,602 @@
+{
+  "generatedFor": 11,
+  "sites": [
+    {
+      "site": "compositionHospitality",
+      "name": "Composition Hospitality",
+      "domain": "www.compositionhospitality.com",
+      "pages": 8,
+      "pageTitles": [
+        "Composition Hospitality",
+        "Gallery",
+        "About",
+        "Contact",
+        "Portfolio",
+        "Composition Hospitality",
+        "Product Catalogs",
+        "Meet the Team"
+      ],
+      "blocks": 194,
+      "maxDepth": 3,
+      "containers": 66,
+      "withMedia": 78,
+      "withBg": 44,
+      "withAnim": 70,
+      "archetypes": {
+        "hero/banner (bg-media + copy)": 44,
+        "heading + text": 55,
+        "container": 13,
+        "heading + text + media": 63,
+        "container (blocks2)": 6,
+        "container (blocks0)": 1,
+        "container (blocks3)": 5,
+        "other": 3,
+        "container (blocks5)": 4
+      },
+      "layoutClasses": {
+        "blocks5": 26,
+        "blocks1": 34,
+        "blocks3": 44,
+        "blocks2": 8,
+        "blocks0": 1
+      },
+      "media": {
+        "count": 1564,
+        "byType": {
+          "image": 1551,
+          "icon": 2,
+          "form": 1,
+          "custom": 8,
+          "?": 1,
+          "application": 1
+        },
+        "withDims": 1548,
+        "totalSizeBytes": 0
+      },
+      "nav": 6,
+      "footer": 2,
+      "icons": 0,
+      "tokens": {
+        "colors": 7,
+        "text": 16,
+        "buttons": 5,
+        "blocks": 8,
+        "forms": 1,
+        "tables": 1
+      }
+    },
+    {
+      "site": "fitHealthClub",
+      "name": "FIT Health Club",
+      "domain": "www.tbpfit.com",
+      "pages": 5,
+      "pageTitles": [
+        "FIT Health Club",
+        "The Pointe",
+        "The Tower",
+        "Media Studios",
+        "Pinnacle"
+      ],
+      "blocks": 185,
+      "maxDepth": 4,
+      "containers": 53,
+      "withMedia": 29,
+      "withBg": 24,
+      "withAnim": 0,
+      "archetypes": {
+        "hero/banner (bg-media + copy)": 24,
+        "heading + text": 95,
+        "container (blocks1)": 11,
+        "container": 41,
+        "heading + text + media": 14
+      },
+      "layoutClasses": {
+        "blocks1": 32
+      },
+      "media": {
+        "count": 110,
+        "byType": {
+          "image": 99,
+          "custom": 10,
+          "form": 1
+        },
+        "withDims": 99,
+        "totalSizeBytes": 0
+      },
+      "nav": 11,
+      "footer": 6,
+      "icons": 0,
+      "tokens": {
+        "colors": 7,
+        "text": 7,
+        "buttons": 5,
+        "blocks": 4,
+        "forms": 1,
+        "tables": 1
+      }
+    },
+    {
+      "site": "mediaStudios",
+      "name": "Media Studios",
+      "domain": "www.mediastudiosburbank.com",
+      "pages": 7,
+      "pageTitles": [
+        "Home",
+        "3333 Empire",
+        "3100 Thornton",
+        "2255 Ontario",
+        "2233 Ontario",
+        "3355 Empire"
+      ],
+      "blocks": 200,
+      "maxDepth": 3,
+      "containers": 74,
+      "withMedia": 140,
+      "withBg": 30,
+      "withAnim": 44,
+      "archetypes": {
+        "hero/banner (bg-media + copy)": 30,
+        "heading + text + media": 78,
+        "container (blocks1)": 12,
+        "heading + text": 37,
+        "container": 43
+      },
+      "layoutClasses": {
+        "blocks1": 20,
+        "blocks0": 7
+      },
+      "media": {
+        "count": 374,
+        "byType": {
+          "image": 362,
+          "video": 5,
+          "custom": 5,
+          "icon": 1,
+          "application": 1
+        },
+        "withDims": 355,
+        "totalSizeBytes": 0
+      },
+      "nav": 6,
+      "footer": 2,
+      "icons": 2,
+      "tokens": {
+        "colors": 7,
+        "text": 10,
+        "buttons": 2,
+        "blocks": 2,
+        "forms": 1,
+        "tables": 1
+      }
+    },
+    {
+      "site": "oceanAvenueProject",
+      "name": "Ocean Avenue Project",
+      "domain": "www.oceanavenueproject.com",
+      "pages": 11,
+      "pageTitles": [
+        "Ocean Avenue Project",
+        "The Story of Our Design",
+        "Community Benefits",
+        "The Team",
+        "Bio David Paul",
+        "Stay in Touch",
+        "Message to Community",
+        "Privacy",
+        "Bio Frank Gehry",
+        "Bio Jeff Worthe",
+        "Ocean Avenue Project"
+      ],
+      "blocks": 74,
+      "maxDepth": 2,
+      "containers": 20,
+      "withMedia": 37,
+      "withBg": 4,
+      "withAnim": 0,
+      "archetypes": {
+        "hero/banner (bg-media + copy)": 4,
+        "container": 20,
+        "heading + text": 21,
+        "heading + text + media": 29
+      },
+      "layoutClasses": {},
+      "media": {
+        "count": 57,
+        "byType": {
+          "image": 51,
+          "application": 5,
+          "form": 1
+        },
+        "withDims": 51,
+        "totalSizeBytes": 0
+      },
+      "nav": 6,
+      "footer": 4,
+      "icons": 0,
+      "tokens": {
+        "colors": 7,
+        "text": 5,
+        "buttons": 2,
+        "blocks": 1,
+        "forms": 1,
+        "tables": 1
+      }
+    },
+    {
+      "site": "strategyAdvantage",
+      "name": "Strategy Advantage",
+      "domain": "www.strategyadvantage.com",
+      "pages": 6,
+      "pageTitles": [
+        "Home",
+        "About",
+        "Our Portfolio",
+        "Connect With Us",
+        "Strategy Roadmap",
+        "Outside the Lines"
+      ],
+      "blocks": 273,
+      "maxDepth": 3,
+      "containers": 69,
+      "withMedia": 117,
+      "withBg": 28,
+      "withAnim": 20,
+      "archetypes": {
+        "hero/banner (bg-media + copy)": 28,
+        "heading + text": 91,
+        "heading + text + media": 108,
+        "container (blocks1)": 4,
+        "container": 42
+      },
+      "layoutClasses": {
+        "blocks1": 49,
+        "blocks0": 1,
+        "blocks2": 3
+      },
+      "media": {
+        "count": 230,
+        "byType": {
+          "image": 205,
+          "custom": 13,
+          "application": 10,
+          "icon": 1,
+          "form": 1
+        },
+        "withDims": 198,
+        "totalSizeBytes": 0
+      },
+      "nav": 6,
+      "footer": 0,
+      "icons": 0,
+      "tokens": {
+        "colors": 7,
+        "text": 11,
+        "buttons": 6,
+        "blocks": 4,
+        "forms": 1,
+        "tables": 1
+      }
+    },
+    {
+      "site": "theBurbankPortfolio",
+      "name": "The Burbank Portfolio",
+      "domain": "www.theburbankportfolio.com",
+      "pages": 8,
+      "pageTitles": [
+        "Home",
+        "Properties",
+        "Amenities",
+        "Burbank",
+        "3800 Alameda",
+        "Central Park",
+        "Tower-01",
+        "Tower Option 02"
+      ],
+      "blocks": 257,
+      "maxDepth": 3,
+      "containers": 92,
+      "withMedia": 155,
+      "withBg": 59,
+      "withAnim": 49,
+      "archetypes": {
+        "hero/banner (bg-media + copy)": 59,
+        "heading + text + media": 80,
+        "container": 40,
+        "heading + text": 67,
+        "other": 2,
+        "container (blocks1)": 6,
+        "container (blocks0)": 3
+      },
+      "layoutClasses": {
+        "blocks1": 57,
+        "blocks0": 4
+      },
+      "media": {
+        "count": 302,
+        "byType": {
+          "image": 281,
+          "video": 12,
+          "custom": 8,
+          "application": 1
+        },
+        "withDims": 271,
+        "totalSizeBytes": 0
+      },
+      "nav": 5,
+      "footer": 2,
+      "icons": 2,
+      "tokens": {
+        "colors": 7,
+        "text": 13,
+        "buttons": 2,
+        "blocks": 3,
+        "forms": 1,
+        "tables": 1
+      }
+    },
+    {
+      "site": "thePinnacle",
+      "name": "The Pinnacle",
+      "domain": "www.thepinnacleburbank.com",
+      "pages": 3,
+      "pageTitles": ["The Pinnacle"],
+      "blocks": 125,
+      "maxDepth": 3,
+      "containers": 36,
+      "withMedia": 78,
+      "withBg": 4,
+      "withAnim": 6,
+      "archetypes": {
+        "hero/banner (bg-media + copy)": 4,
+        "heading + text + media": 53,
+        "heading + text": 32,
+        "container": 35,
+        "bare media": 1
+      },
+      "layoutClasses": {
+        "blocks1": 1,
+        "blocks2": 13,
+        "blocks0": 7
+      },
+      "media": {
+        "count": 296,
+        "byType": {
+          "image": 280,
+          "video": 4,
+          "custom": 8,
+          "application": 4
+        },
+        "withDims": 271,
+        "totalSizeBytes": 0
+      },
+      "nav": 5,
+      "footer": 2,
+      "icons": 2,
+      "tokens": {
+        "colors": 7,
+        "text": 9,
+        "buttons": 3,
+        "blocks": 3,
+        "forms": 1,
+        "tables": 1
+      }
+    },
+    {
+      "site": "thePointe",
+      "name": "The Pointe",
+      "domain": "www.thepointeburbank.com",
+      "pages": 2,
+      "pageTitles": ["The Pointe"],
+      "blocks": 115,
+      "maxDepth": 3,
+      "containers": 41,
+      "withMedia": 67,
+      "withBg": 21,
+      "withAnim": 25,
+      "archetypes": {
+        "hero/banner (bg-media + copy)": 21,
+        "heading + text + media": 40,
+        "heading + text": 28,
+        "container": 26
+      },
+      "layoutClasses": {
+        "blocks2": 7,
+        "blocks0": 5
+      },
+      "media": {
+        "count": 320,
+        "byType": {
+          "image": 305,
+          "video": 4,
+          "custom": 9,
+          "application": 2
+        },
+        "withDims": 296,
+        "totalSizeBytes": 0
+      },
+      "nav": 5,
+      "footer": 2,
+      "icons": 2,
+      "tokens": {
+        "colors": 7,
+        "text": 15,
+        "buttons": 3,
+        "blocks": 3,
+        "forms": 1,
+        "tables": 1
+      }
+    },
+    {
+      "site": "theTower",
+      "name": "The Tower",
+      "domain": "www.thetowerburbank.com",
+      "pages": 3,
+      "pageTitles": ["The Tower"],
+      "blocks": 122,
+      "maxDepth": 4,
+      "containers": 39,
+      "withMedia": 81,
+      "withBg": 25,
+      "withAnim": 14,
+      "archetypes": {
+        "hero/banner (bg-media + copy)": 25,
+        "container": 25,
+        "heading + text": 16,
+        "heading + text + media": 55,
+        "bare media": 1
+      },
+      "layoutClasses": {
+        "blocks0": 6,
+        "blocks2": 1
+      },
+      "media": {
+        "count": 285,
+        "byType": {
+          "image": 271,
+          "video": 4,
+          "custom": 9,
+          "application": 1
+        },
+        "withDims": 262,
+        "totalSizeBytes": 0
+      },
+      "nav": 5,
+      "footer": 2,
+      "icons": 2,
+      "tokens": {
+        "colors": 7,
+        "text": 12,
+        "buttons": 3,
+        "blocks": 3,
+        "forms": 1,
+        "tables": 1
+      }
+    },
+    {
+      "site": "williamsonHomes",
+      "name": "Williamson Homes",
+      "domain": "www.williamson-homes.com",
+      "pages": 4,
+      "pageTitles": ["Home", "About Us", "Contact", "Test page"],
+      "blocks": 62,
+      "maxDepth": 3,
+      "containers": 16,
+      "withMedia": 24,
+      "withBg": 5,
+      "withAnim": 0,
+      "archetypes": {
+        "hero/banner (bg-media + copy)": 5,
+        "heading + text + media": 18,
+        "heading + text": 26,
+        "container": 10,
+        "container (blocks1)": 2,
+        "container (blocks0)": 1
+      },
+      "layoutClasses": {
+        "blocks1": 25,
+        "blocks0": 1
+      },
+      "media": {
+        "count": 126,
+        "byType": {
+          "image": 115,
+          "custom": 11
+        },
+        "withDims": 97,
+        "totalSizeBytes": 0
+      },
+      "nav": 4,
+      "footer": 0,
+      "icons": 0,
+      "tokens": {
+        "colors": 7,
+        "text": 7,
+        "buttons": 4,
+        "blocks": 2,
+        "forms": 1,
+        "tables": 1
+      }
+    },
+    {
+      "site": "xcoSite",
+      "name": "XCO",
+      "domain": "www.xcoadvantage.com",
+      "pages": 3,
+      "pageTitles": [
+        "Short term healthcare consulting and advice",
+        "About",
+        "Contact"
+      ],
+      "blocks": 90,
+      "maxDepth": 4,
+      "containers": 27,
+      "withMedia": 38,
+      "withBg": 12,
+      "withAnim": 19,
+      "archetypes": {
+        "hero/banner (bg-media + copy)": 12,
+        "heading + text": 27,
+        "container (blocks2)": 6,
+        "heading + text + media": 31,
+        "container": 14
+      },
+      "layoutClasses": {
+        "blocks0": 2,
+        "blocks1": 11,
+        "blocks2": 7
+      },
+      "media": {
+        "count": 102,
+        "byType": {
+          "image": 83,
+          "video": 15,
+          "custom": 3,
+          "icon": 1
+        },
+        "withDims": 83,
+        "totalSizeBytes": 0
+      },
+      "nav": 4,
+      "footer": 3,
+      "icons": 0,
+      "tokens": {
+        "colors": 7,
+        "text": 12,
+        "buttons": 4,
+        "blocks": 4,
+        "forms": 1,
+        "tables": 1
+      }
+    }
+  ],
+  "fleetArchetypes": {
+    "hero/banner (bg-media + copy)": 256,
+    "heading + text": 495,
+    "container": 309,
+    "heading + text + media": 569,
+    "container (blocks2)": 12,
+    "container (blocks0)": 5,
+    "container (blocks3)": 5,
+    "other": 5,
+    "container (blocks5)": 4,
+    "container (blocks1)": 35,
+    "bare media": 2
+  },
+  "topSimilarPairs": [
+    ["oceanAvenueProject", "thePinnacle", 0.996],
+    ["strategyAdvantage", "xcoSite", 0.987],
+    ["theBurbankPortfolio", "thePointe", 0.982],
+    ["mediaStudios", "thePointe", 0.981],
+    ["mediaStudios", "theTower", 0.979],
+    ["compositionHospitality", "theBurbankPortfolio", 0.977],
+    ["thePointe", "xcoSite", 0.971],
+    ["oceanAvenueProject", "strategyAdvantage", 0.97],
+    ["strategyAdvantage", "williamsonHomes", 0.967],
+    ["theBurbankPortfolio", "xcoSite", 0.966],
+    ["oceanAvenueProject", "thePointe", 0.965],
+    ["strategyAdvantage", "thePointe", 0.963],
+    ["compositionHospitality", "xcoSite", 0.96],
+    ["thePointe", "theTower", 0.96],
+    ["mediaStudios", "oceanAvenueProject", 0.959]
+  ]
+}
