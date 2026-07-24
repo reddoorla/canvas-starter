@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { untrack } from "svelte";
   import type { Cell, Direction, Layout } from "$lib/canvas/nav";
   import {
     parseLayout,
@@ -14,29 +15,34 @@
   let { layout }: { layout: Layout } = $props();
 
   const parsed = $derived(parseLayout(layout));
-  let current = $state<Cell>(entryCell(parseLayout(layout)));
+  let current = $state<Cell>(entryCell(untrack(() => parsed)));
   let isAnimating = $state(false);
-  let reduced = $state(false);
-
-  $effect(() => {
-    reduced =
-      typeof window !== "undefined" && window.matchMedia
-        ? window.matchMedia("(prefers-reduced-motion: reduce)").matches
-        : false;
-  });
+  const reduced = $derived(
+    typeof window !== "undefined" && window.matchMedia
+      ? window.matchMedia("(prefers-reduced-motion: reduce)").matches
+      : false,
+  );
 
   const reachable = $derived(reachableDirections(current, parsed));
+
+  let cooldown: ReturnType<typeof setTimeout>;
 
   function move(dir: Direction | null) {
     if (!dir || isAnimating) return;
     const target = nextCell(current, dir, parsed);
     if (!target) return;
     current = target;
-    if (!reduced) isAnimating = true; // released on transitionend
+    isAnimating = true;
+    clearTimeout(cooldown);
+    // Reduced motion: no transition fires, so a short cooldown gates input.
+    // Normal: transitionend clears it first; this is a safety net if it never fires.
+    cooldown = setTimeout(() => (isAnimating = false), reduced ? 200 : 700);
   }
 
   function onTransitionEnd(e: TransitionEvent) {
-    if (e.propertyName === "transform") isAnimating = false;
+    if (e.propertyName !== "transform") return;
+    clearTimeout(cooldown);
+    isAnimating = false;
   }
 
   const KEY_DIR: Record<string, Direction> = {
@@ -51,7 +57,7 @@
   };
 
   function onKeydown(e: KeyboardEvent) {
-    const dir = KEY_DIR[e.key];
+    const dir = KEY_DIR[e.key] ?? KEY_DIR[e.key.toLowerCase()];
     if (!dir) return;
     e.preventDefault();
     move(dir);
@@ -112,7 +118,10 @@
     inset: 0;
     overflow: hidden;
     background: #0b0b0f;
-    outline: none;
+  }
+  .viewport:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: -3px;
   }
   .board {
     display: grid;
