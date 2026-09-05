@@ -42,7 +42,7 @@ GitHub App, `netlify-site` pointed at `canvas-starter-591`, CI running on
 `staging`, the shared reusable workflow taken at v1.4.1). Only two touched
 code: #4 relaxed the smoke suite's home-page expectation to "200 with a `main`
 landmark", because the canvas replaced the starter's homepage, and #20 capped
-Prismic srcset widths across the *inherited* starter slices, which the canvas
+Prismic srcset widths across the _inherited_ starter slices, which the canvas
 route does not use. Nobody has extended the interaction since the day it was
 written.
 
