@@ -10,9 +10,7 @@ export const GET: RequestHandler = async ({ fetch, url }) => {
 
   const urls = pages.map((page) => {
     const path = page.uid === "home" ? "/" : `/${page.uid}`;
-    const lastmod = new Date(
-      page.last_publication_date ?? Date.now(),
-    ).toISOString();
+    const lastmod = new Date(page.last_publication_date ?? Date.now()).toISOString();
     return `  <url>
     <loc>${origin}${path}</loc>
     <lastmod>${lastmod}</lastmod>

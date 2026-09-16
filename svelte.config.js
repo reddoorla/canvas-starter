@@ -12,8 +12,7 @@ const isPlaceholderRepo =
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
   compilerOptions: {
-    warningFilter: (warning) =>
-      warning.code !== "element_invalid_self_closing_tag",
+    warningFilter: (warning) => warning.code !== "element_invalid_self_closing_tag",
   },
   kit: {
     adapter: adapter(),
@@ -66,12 +65,7 @@ const config = {
           "https://challenges.cloudflare.com",
         ],
         "style-src": ["self", "unsafe-inline"],
-        "img-src": [
-          "self",
-          "data:",
-          "https://images.prismic.io",
-          "https://*.prismic.io",
-        ],
+        "img-src": ["self", "data:", "https://images.prismic.io", "https://*.prismic.io"],
         "media-src": ["self", "https://*.vimeocdn.com"],
         "frame-src": [
           "self",
@@ -79,11 +73,7 @@ const config = {
           // Cloudflare Turnstile renders its challenge in an iframe from this host.
           "https://challenges.cloudflare.com",
         ],
-        "connect-src": [
-          "self",
-          "https://*.prismic.io",
-          "https://static.cdn.prismic.io",
-        ],
+        "connect-src": ["self", "https://*.prismic.io", "https://static.cdn.prismic.io"],
         "font-src": ["self", "data:"],
         "base-uri": ["self"],
         "form-action": ["self"],

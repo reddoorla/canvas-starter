@@ -15,10 +15,7 @@
   // Site chrome from the Blux convert (empty stub on an unconverted starter →
   // logo-only Nav + placeholder Footer).
   const siteConfig = loadSiteConfig();
-  import {
-    disableSmoothScroll,
-    restoreSmoothScroll,
-  } from "$lib/utils/instantNavScroll";
+  import { disableSmoothScroll, restoreSmoothScroll } from "$lib/utils/instantNavScroll";
 
   let { data, children } = $props();
 

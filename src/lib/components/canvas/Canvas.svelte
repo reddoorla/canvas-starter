@@ -101,10 +101,7 @@
     ontransitionend={onTransitionEnd}
   >
     {#each parsed.slides as slide (slide.label)}
-      <Slide
-        {slide}
-        current={slide.row === current.row && slide.col === current.col}
-      />
+      <Slide {slide} current={slide.row === current.row && slide.col === current.col} />
     {/each}
   </div>
 

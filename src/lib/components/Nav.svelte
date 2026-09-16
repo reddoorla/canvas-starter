@@ -60,8 +60,7 @@
               class="flex items-center gap-1"
               aria-expanded={openDesktopIndex === i}
               aria-controls="nav-dropdown-{i}"
-              onclick={() =>
-                (openDesktopIndex = openDesktopIndex === i ? null : i)}
+              onclick={() => (openDesktopIndex = openDesktopIndex === i ? null : i)}
               onkeydown={(e) => {
                 if (e.key === "Escape") openDesktopIndex = null;
               }}
@@ -78,10 +77,7 @@
               {#each item.children as child, ci (ci)}
                 <li>
                   {#if child.href}
-                    <a
-                      href={child.href}
-                      class="block px-3 py-2 hover:opacity-70">{child.label}</a
-                    >
+                    <a href={child.href} class="block px-3 py-2 hover:opacity-70">{child.label}</a>
                   {:else}
                     <span class="block px-3 py-2">{child.label}</span>
                   {/if}
@@ -148,10 +144,8 @@
           {#if openMobileIndex === i}
             {#each item.children as child, ci (ci)}
               {#if child.href}
-                <a
-                  href={child.href}
-                  class="px-4 py-2 opacity-80"
-                  onclick={closeMenu}>{child.label}</a
+                <a href={child.href} class="px-4 py-2 opacity-80" onclick={closeMenu}
+                  >{child.label}</a
                 >
               {:else}
                 <span class="px-4 py-2 opacity-80">{child.label}</span>
@@ -160,9 +154,7 @@
           {/if}
         </div>
       {:else if item.href}
-        <a href={item.href} class="px-4 py-3" onclick={closeMenu}
-          >{item.label}</a
-        >
+        <a href={item.href} class="px-4 py-3" onclick={closeMenu}>{item.label}</a>
       {:else}
         <span class="px-4 py-3">{item.label}</span>
       {/if}
