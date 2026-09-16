@@ -1,10 +1,7 @@
 <script lang="ts">
   import { PRESETS, type PresetName } from "$lib/canvas/presets";
 
-  let {
-    active,
-    onselect,
-  }: { active: PresetName; onselect: (name: PresetName) => void } = $props();
+  let { active, onselect }: { active: PresetName; onselect: (name: PresetName) => void } = $props();
 
   const names = Object.keys(PRESETS) as PresetName[];
 </script>

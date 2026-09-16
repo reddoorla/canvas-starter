@@ -32,7 +32,5 @@ export async function entries() {
   const pages = await client.getAllByType("page");
 
   // "home" is rendered by the root route — exclude so /home isn't duplicated.
-  return pages
-    .filter((page) => page.uid !== "home")
-    .map((page) => ({ uid: page.uid }));
+  return pages.filter((page) => page.uid !== "home").map((page) => ({ uid: page.uid }));
 }

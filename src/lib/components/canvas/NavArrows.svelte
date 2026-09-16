@@ -1,10 +1,8 @@
 <script lang="ts">
   import type { Direction } from "$lib/canvas/nav";
 
-  let {
-    reachable,
-    onmove,
-  }: { reachable: Set<Direction>; onmove: (d: Direction) => void } = $props();
+  let { reachable, onmove }: { reachable: Set<Direction>; onmove: (d: Direction) => void } =
+    $props();
 
   const arrows: { dir: Direction; glyph: string }[] = [
     { dir: "up", glyph: "↑" },

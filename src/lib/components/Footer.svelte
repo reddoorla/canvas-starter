@@ -32,21 +32,14 @@
       // member (truthy) and slip past the filter, then crash on `.platform`.
       .map((s) => ({
         ...s,
-        meta: Object.hasOwn(NETWORK, s.network)
-          ? NETWORK[s.network]
-          : undefined,
+        meta: Object.hasOwn(NETWORK, s.network) ? NETWORK[s.network] : undefined,
       }))
-      .filter(
-        (s): s is typeof s & { meta: { platform: string; label: string } } =>
-          !!s.meta,
-      ),
+      .filter((s): s is typeof s & { meta: { platform: string; label: string } } => !!s.meta),
   );
 </script>
 
 <footer class="mt-auto w-full px-8 py-12">
-  <div
-    class="mx-auto flex max-w-4xl flex-col items-center justify-between gap-4 sm:flex-row"
-  >
+  <div class="mx-auto flex max-w-4xl flex-col items-center justify-between gap-4 sm:flex-row">
     {#if known.length > 0}
       <ul class="flex items-center gap-4">
         <!-- Keyed by index: a network can repeat across footer blocks, and a

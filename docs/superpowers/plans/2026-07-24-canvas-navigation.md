@@ -323,11 +323,7 @@ const DELTA: Record<Direction, Cell> = {
 };
 
 /** The neighbour cell in `dir`, or null if it is empty / off the grid. */
-export function nextCell(
-  current: Cell,
-  dir: Direction,
-  parsed: ParsedLayout,
-): Cell | null {
+export function nextCell(current: Cell, dir: Direction, parsed: ParsedLayout): Cell | null {
   const target = {
     row: current.row + DELTA[dir].row,
     col: current.col + DELTA[dir].col,
@@ -336,10 +332,7 @@ export function nextCell(
 }
 
 /** Which of the four directions currently lead to a filled neighbour. */
-export function reachableDirections(
-  current: Cell,
-  parsed: ParsedLayout,
-): Set<Direction> {
+export function reachableDirections(current: Cell, parsed: ParsedLayout): Set<Direction> {
   const out = new Set<Direction>();
   (Object.keys(DELTA) as Direction[]).forEach((dir) => {
     if (nextCell(current, dir, parsed)) out.add(dir);
@@ -427,8 +420,7 @@ Create `src/lib/components/canvas/Slide.svelte`:
 <section
   class="slide"
   class:is-current={current}
-  style="--slide-color: {slide.color}; grid-row: {slide.row +
-    1}; grid-column: {slide.col + 1};"
+  style="--slide-color: {slide.color}; grid-row: {slide.row + 1}; grid-column: {slide.col + 1};"
   aria-label={`Slide ${slide.label}`}
   aria-current={current ? "true" : undefined}
 >
@@ -490,10 +482,8 @@ Create `src/lib/components/canvas/NavArrows.svelte`:
 ```svelte
 <script lang="ts">
   import type { Direction } from "$lib/canvas/nav";
-  let {
-    reachable,
-    onmove,
-  }: { reachable: Set<Direction>; onmove: (d: Direction) => void } = $props();
+  let { reachable, onmove }: { reachable: Set<Direction>; onmove: (d: Direction) => void } =
+    $props();
 </script>
 ```
 
@@ -608,10 +598,7 @@ Create `src/lib/components/canvas/Canvas.svelte`:
     ontransitionend={onTransitionEnd}
   >
     {#each parsed.slides as slide (slide.label)}
-      <Slide
-        {slide}
-        current={slide.row === current.row && slide.col === current.col}
-      />
+      <Slide {slide} current={slide.row === current.row && slide.col === current.col} />
     {/each}
   </div>
 
@@ -729,10 +716,8 @@ Replace the entire contents of `src/lib/components/canvas/NavArrows.svelte`:
 <script lang="ts">
   import type { Direction } from "$lib/canvas/nav";
 
-  let {
-    reachable,
-    onmove,
-  }: { reachable: Set<Direction>; onmove: (d: Direction) => void } = $props();
+  let { reachable, onmove }: { reachable: Set<Direction>; onmove: (d: Direction) => void } =
+    $props();
 
   const arrows: { dir: Direction; glyph: string }[] = [
     { dir: "up", glyph: "↑" },
@@ -904,10 +889,7 @@ Create `src/lib/components/canvas/LayoutSwitcher.svelte`:
 <script lang="ts">
   import { PRESETS, type PresetName } from "$lib/canvas/presets";
 
-  let {
-    active,
-    onselect,
-  }: { active: PresetName; onselect: (name: PresetName) => void } = $props();
+  let { active, onselect }: { active: PresetName; onselect: (name: PresetName) => void } = $props();
 
   const names = Object.keys(PRESETS) as PresetName[];
 </script>
@@ -976,10 +958,7 @@ Replace the entire contents of `src/routes/[[preview=preview]]/+page.svelte`:
 
 <svelte:head>
   <title>Canvas Navigation</title>
-  <meta
-    name="description"
-    content="A 2D directional-snap canvas navigation prototype."
-  />
+  <meta name="description" content="A 2D directional-snap canvas navigation prototype." />
 </svelte:head>
 
 <!-- Remount Canvas on preset change so position/animation state resets cleanly. -->

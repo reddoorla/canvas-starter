@@ -16,8 +16,7 @@
 <section
   class="slide"
   class:is-current={current}
-  style="--slide-color: {slide.color}; grid-row: {slide.row +
-    1}; grid-column: {slide.col + 1};"
+  style="--slide-color: {slide.color}; grid-row: {slide.row + 1}; grid-column: {slide.col + 1};"
   aria-label={`Slide ${slide.label}`}
   aria-current={current ? "true" : undefined}
 >

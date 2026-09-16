@@ -67,11 +67,7 @@ const DELTA: Record<Direction, Cell> = {
 };
 
 /** The neighbour cell in `dir`, or null if it is empty / off the grid. */
-export function nextCell(
-  current: Cell,
-  dir: Direction,
-  parsed: ParsedLayout,
-): Cell | null {
+export function nextCell(current: Cell, dir: Direction, parsed: ParsedLayout): Cell | null {
   const target = {
     row: current.row + DELTA[dir].row,
     col: current.col + DELTA[dir].col,
@@ -80,10 +76,7 @@ export function nextCell(
 }
 
 /** Which of the four directions currently lead to a filled neighbour. */
-export function reachableDirections(
-  current: Cell,
-  parsed: ParsedLayout,
-): Set<Direction> {
+export function reachableDirections(current: Cell, parsed: ParsedLayout): Set<Direction> {
   const out = new Set<Direction>();
   (Object.keys(DELTA) as Direction[]).forEach((dir) => {
     if (nextCell(current, dir, parsed)) out.add(dir);
