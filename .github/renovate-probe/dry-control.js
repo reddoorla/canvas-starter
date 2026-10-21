@@ -1,11 +1,13 @@
 module.exports = {
   "requireConfig": "ignored",
   "onboarding": false,
+  "dryRun": "full",
   "extends": [
     "github>reddoorla/.github:renovate-config"
   ],
-  "schedule": [
-    "at any time"
-  ],
-  "dryRun": "full"
+  "force": {
+    "schedule": [
+      "at any time"
+    ]
+  }
 };

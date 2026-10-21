@@ -1,0 +1,23 @@
+{
+  "packageRules": [
+    {
+      "matchUpdateTypes": [
+        "major",
+        "pin",
+        "pinDigest",
+        "digest",
+        "rollback",
+        "bump",
+        "replacement"
+      ],
+      "enabled": false
+    },
+    {
+      "matchUpdateTypes": [
+        "minor",
+        "patch"
+      ],
+      "automerge": false
+    }
+  ]
+}
