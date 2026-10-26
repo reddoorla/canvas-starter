@@ -3,7 +3,7 @@ import * as publicEnv from "$app/env/public";
 import { createClient, isPlaceholderRepo } from "$lib/prismicio";
 import type { RequestHandler } from "./$types";
 
-// Deploys as a Netlify function under adapter-netlify v6 — a live probe, so it
+// Deploys as a Netlify function under adapter-netlify v7 — a live probe, so it
 // must never be prerendered.
 export const prerender = false;
 

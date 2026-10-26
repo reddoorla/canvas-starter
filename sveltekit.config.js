@@ -32,8 +32,9 @@ if (process.env.VITE_REDDOOR_GATE_FIXTURES && process.env.NETLIFY) {
 // per-host CSRF check, and vite.config.ts hands this origin to $lib/seo, which
 // puts it in place of the placeholder. Local builds set no URL and keep the
 // placeholder, which only shows up in build/ output, never in dev.
-// robots.txt and sitemap.xml are NOT prerendered: they must answer per host,
-// so the netlify.app mirror can differ from the real domain (#140).
+// robots.txt and sitemap.xml are prerendered in this repo (the starter moved
+// them to per-request answers, reddoor-starter#140), so they take the origin
+// through $lib/seo's siteOrigin too.
 /** @param {string | undefined} value */
 const originOf = (value) => {
   if (!value) return undefined;
