@@ -20,7 +20,7 @@ export async function load({ params, fetch, cookies }) {
       meta_image_alt: page.data.meta_image?.alt ?? undefined,
     };
   } catch {
-    error(404, { message: "Page not found" });
+    error(404, "Page not found");
   }
 }
 
