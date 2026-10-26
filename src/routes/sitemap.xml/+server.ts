@@ -1,4 +1,5 @@
 import { createClient, isPlaceholderRepo } from "$lib/prismicio";
+import { siteOrigin } from "$lib/seo";
 import type { RequestHandler } from "./$types";
 
 export const prerender = true;
@@ -6,7 +7,9 @@ export const prerender = true;
 export const GET: RequestHandler = async ({ fetch, url }) => {
   const client = createClient({ fetch });
   const pages = isPlaceholderRepo ? [] : await client.getAllByType("page");
-  const origin = url.origin;
+  // Prerendered: kit 3 gives `url` its placeholder origin, and siteOrigin puts
+  // the build's production origin in its place (sveltekit.config.js).
+  const origin = siteOrigin(url);
 
   const urls = pages.map((page) => {
     const path = page.uid === "home" ? "/" : `/${page.uid}`;

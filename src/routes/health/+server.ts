@@ -1,10 +1,9 @@
-import { json } from "@sveltejs/kit";
-import { env as privateEnv } from "$env/dynamic/private";
-import { env as publicEnv } from "$env/dynamic/public";
+import * as privateEnv from "$app/env/private";
+import * as publicEnv from "$app/env/public";
 import { createClient, isPlaceholderRepo } from "$lib/prismicio";
 import type { RequestHandler } from "./$types";
 
-// Deploys as a Netlify function under adapter-netlify v6 — a live probe, so it
+// Deploys as a Netlify function under adapter-netlify v7 — a live probe, so it
 // must never be prerendered.
 export const prerender = false;
 
@@ -51,5 +50,5 @@ export const GET: RequestHandler = async ({ fetch }) => {
   // present"; since we are inside the handler, the function ran, so ok is false
   // only when the Prismic probe actively errored.
   const ok = prismic !== "error";
-  return json({ ok, prismic, forms });
+  return Response.json({ ok, prismic, forms });
 };
